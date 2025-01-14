@@ -1,215 +1,181 @@
-import React from "react";
-import { Menu, X, Check, ChevronRight } from "lucide-react";
+'use client'
 
-// Components would be imported from their respective files
-const Header = () => (
-  <header className="bg-white/90 border-gray-100 fixed left-0 right-0 top-0 z-50 border-b backdrop-blur-sm">
-    <nav className="container mx-auto flex items-center justify-between px-4 py-3">
-      <div className="flex items-center gap-2">
-        <img src="/logo.png" alt="Onsat Logo" className="h-10 w-10" />
-        <span className="text-2xl font-bold text-[#40BFB4]">ONSAT</span>
-      </div>
-      <div className="hidden items-center gap-8 md:flex">
-        <a href="#features" className="text-gray-600 hover:text-[#40BFB4]">
-          ฟีเจอร์
-        </a>
-        <a href="#pricing" className="text-gray-600 hover:text-[#40BFB4]">
-          ราคา
-        </a>
-        <a href="#faq" className="text-gray-600 hover:text-[#40BFB4]">
-          คำถามที่พบบ่อย
-        </a>
-        <button className="text-white rounded-full bg-[#40BFB4] px-6 py-2 transition hover:bg-[#3aa89e]">
-          เริ่มต้นใช้งาน
-        </button>
-      </div>
-      <button className="md:hidden">
-        <Menu className="text-gray-600 h-6 w-6" />
-      </button>
-    </nav>
-  </header>
-);
+import { useState } from 'react'
+import Image from 'next/image'
+import { Clock, Shield, Bell, Facebook, Instagram, Twitter } from 'lucide-react'
+import { motion } from 'framer-motion'
 
-const Hero = () => (
-  <section className="px-4 pb-16 pt-24">
-    <div className="container mx-auto">
-      <div className="text-center">
-        <h1 className="mb-6 font-[Itim] text-4xl font-bold md:text-5xl">
-          ระบบรับเงินโดเนทอัจฉริยะ
-          <br />
-          ที่สตรีมเมอร์ไว้วางใจ
-        </h1>
-        <p className="text-gray-600 mb-8 font-[Prompt] text-lg">
-          รับเงินโดเนทแบบเรียลไทม์ พร้อมระบบแจ้งเตือนอัตโนมัติ
-          และรายงานสรุปที่ดูง่าย ไม่พลาดทุกการสนับสนุน
-        </p>
-        <div className="flex flex-col justify-center gap-4 sm:flex-row">
-          <button className="text-white rounded-full bg-[#40BFB4] px-8 py-3 font-semibold transition hover:bg-[#3aa89e]">
-            ทดลองใช้ฟรี 30 วัน
-          </button>
-          <button className="hover:text-white rounded-full border border-[#40BFB4] px-8 py-3 font-semibold text-[#40BFB4] transition hover:bg-[#40BFB4]">
-            ดูแพ็กเกจทั้งหมด
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const Features = () => {
-  const features = [
-    {
-      title: "ครบทุกช่องทางการชำระเงิน",
-      description:
-        "รองรับการชำระเงินผ่านบัตรเครดิต QR Code และ e-Wallet ชั้นนำทุกค่าย",
-      icon: <Check className="h-6 w-6" />,
-    },
-    {
-      title: "ระบบอัตโนมัติ 100%",
-      description:
-        "ระบบทำงานอัตโนมัติตลอด 24 ชั่วโมง พร้อมแจ้งเตือนทันทีที่มีการโดเนท",
-      icon: <Check className="h-6 w-6" />,
-    },
-    {
-      title: "API พร้อมใช้งาน",
-      description:
-        "เชื่อมต่อกับระบบของคุณได้ง่ายๆ ด้วย API ที่เข้าใจง่ายและมีเอกสารประกอบครบถ้วน",
-      icon: <Check className="h-6 w-6" />,
-    },
-  ];
-
-  return (
-    <section id="features" className="bg-gray-50 py-16">
-      <div className="container mx-auto px-4">
-        <h2 className="mb-12 text-center font-[Itim] text-3xl font-bold md:text-4xl">
-          ฟีเจอร์ครบครัน ที่สตรีมเมอร์ต้องการ
-        </h2>
-        <div className="grid gap-8 md:grid-cols-3">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-xl p-6 shadow-sm transition hover:shadow-md"
-            >
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-[#40BFB4]/10">
-                <div className="text-[#40BFB4]">{feature.icon}</div>
-              </div>
-              <h3 className="mb-3 text-xl font-semibold">{feature.title}</h3>
-              <p className="text-gray-600">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const FAQ = () => {
-  const faqs = [
-    {
-      question: "ระบบมีความปลอดภัยอย่างไร?",
-      answer:
-        "เราใช้เทคโนโลยีการเข้ารหัสระดับสูง และได้รับการรับรองมาตรฐานความปลอดภัยสากล",
-    },
-    {
-      question: "ใช้เวลานานแค่ไหนในการรับเงิน?",
-      answer: "เงินจะเข้าบัญชีของคุณทันทีที่มีการโดเนท และสามารถถอนได้ทุกวัน",
-    },
-    {
-      question: "มีค่าธรรมเนียมเท่าไหร่?",
-      answer:
-        "ค่าธรรมเนียมเริ่มต้นที่ 2.5% ต่อรายการ ขึ้นอยู่กับแพ็กเกจที่เลือกใช้",
-    },
-  ];
-
-  return (
-    <section id="faq" className="py-16">
-      <div className="container mx-auto px-4">
-        <h2 className="mb-12 text-center font-[Itim] text-3xl font-bold md:text-4xl">
-          คำถามที่พบบ่อย
-        </h2>
-        <div className="mx-auto max-w-2xl">
-          {faqs.map((faq, index) => (
-            <div key={index} className="mb-6">
-              <h3 className="mb-2 text-xl font-semibold">{faq.question}</h3>
-              <p className="text-gray-600">{faq.answer}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Footer = () => (
-  <footer className="bg-gray-900 text-white py-12">
-    <div className="container mx-auto px-4">
-      <div className="grid gap-8 md:grid-cols-4">
-        <div>
-          <div className="mb-4 flex items-center gap-2">
-            <img src="/logo.png" alt="Onsat Logo" className="h-10 w-10" />
-            <span className="text-2xl font-bold">ONSAT</span>
-          </div>
-          <p className="text-gray-400">ระบบชำระเงินออนไลน์ที่คุณไว้วางใจ</p>
-        </div>
-        <div>
-          <h4 className="mb-4 font-semibold">ติดต่อเรา</h4>
-          <p className="text-gray-400 text-sm">
-            เลขที่ 25 อาคารอัลม่าลิงค์ ชั้น 17 ห้อง 351
-            <br />
-            ซอยชิดลม ถนนเพลินจิต แขวงลุมพินี
-            <br />
-            เขตปทุมวัน กรุงเทพฯ 10330
-          </p>
-        </div>
-        <div>
-          <h4 className="mb-4 font-semibold">ลิงก์ด่วน</h4>
-          <ul className="space-y-2">
-            <li>
-              <a href="#features" className="text-gray-400 hover:text-white">
-                ฟีเจอร์
-              </a>
-            </li>
-            <li>
-              <a href="#pricing" className="text-gray-400 hover:text-white">
-                ราคา
-              </a>
-            </li>
-            <li>
-              <a href="#faq" className="text-gray-400 hover:text-white">
-                คำถามที่พบบ่อย
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="mb-4 font-semibold">ติดตามเรา</h4>
-          <div className="flex gap-4">
-            <a href="#" className="text-gray-400 hover:text-white">
-              Facebook
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white">
-              Twitter
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="border-gray-800 text-gray-400 mt-8 border-t pt-8 text-center">
-        <p>&copy; 2025 Onsat. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
-);
-
-const Page = () => {
+export default function Home() {
   return (
     <main className="min-h-screen">
-      <Header />
-      <Hero />
-      <Features />
-      <FAQ />
-      <Footer />
-    </main>
-  );
-};
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-r from-neutral-dark to-neutral-mid py-32">
+        <div className="absolute inset-0 opacity-10 pattern-music"></div>
+        <div className="container mx-auto px-4 grid lg:grid-cols-5 gap-12 items-center">
+          <div className="lg:col-span-3 text-white">
+            <motion.h1 
+              className="font-heading text-h1 mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              ระบบจองบัตรอัจฉริยะ สำหรับคนรักดนตรี
+            </motion.h1>
+            <motion.p 
+              className="text-lg mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              ระบบจองบัตรที่ปลอดภัย รวดเร็ว พร้อมฟีเจอร์ครบครัน
+            </motion.p>
+            <div className="space-x-4">
+              <button className="bg-primary text-white px-8 py-3 rounded-button hover:bg-red-600 transition-colors">
+                ค้นหาคอนเสิร์ต
+              </button>
+              <button className="border-2 border-white text-white px-8 py-3 rounded-button hover:bg-white hover:text-neutral-dark transition-colors">
+                สำหรับผู้จัดงาน
+              </button>
+            </div>
+          </div>
+          <div className="lg:col-span-2">
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Image
+                src="/ticket-3d.png"
+                alt="Concert Ticket"
+                width={600}
+                height={400}
+                className="rounded-lg shadow-lg"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
-export default Page;
+      {/* Features Section */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="font-heading text-h2 text-center mb-16">
+            จองง่าย สบายใจ ด้วยระบบอัจฉริยะ
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Clock className="w-12 h-12 text-primary" />,
+                title: 'จองบัตรได้ตลอด 24 ชั่วโมง',
+                description: 'ไม่พลาดทุกคอนเสิร์ต จองได้ทุกที่ทุกเวลา'
+              },
+              {
+                icon: <Shield className="w-12 h-12 text-primary" />,
+                title: 'ระบบชำระเงินที่ปลอดภัย',
+                description: 'รองรับทุกช่องทางการชำระเงิน พร้อมระบบความปลอดภัยระดับสากล'
+              },
+              {
+                icon: <Bell className="w-12 h-12 text-primary" />,
+                title: 'แจ้งเตือนก่อนคอนเสิร์ตเริ่ม',
+                description: 'รับการแจ้งเตือนล่วงหน้า พร้อมข้อมูลสำคัญของงาน'
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                className="bg-neutral-light p-8 rounded-card shadow-md hover:shadow-lg transition-shadow"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+              >
+                <div className="mb-6">{feature.icon}</div>
+                <h3 className="font-heading text-h4 mb-4">{feature.title}</h3>
+                <p className="text-neutral-mid">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="bg-neutral-dark text-white py-20">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            {[
+              { number: '1,000+', label: 'Events' },
+              { number: '100,000+', label: 'Users' },
+              { number: '99.9%', label: 'Uptime' },
+              { number: '24/7', label: 'Support' }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="font-heading text-h2 text-primary mb-2">{stat.number}</div>
+                <div className="text-neutral-light">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-neutral-dark text-white pt-16 pb-8">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-4 gap-8 mb-12">
+            <div>
+              <Image
+                src="/logo.png"
+                alt="Sunday Rock"
+                width={180}
+                height={60}
+                className="mb-4"
+              />
+              <p className="text-neutral-light">
+                ระบบจองบัตรคอนเสิร์ตที่คุณไว้ใจได้
+              </p>
+            </div>
+            <div>
+              <h4 className="font-heading text-h4 mb-4">Quick Links</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-primary transition-colors">ค้นหาคอนเสิร์ต</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">วิธีการจอง</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">สำหรับผู้จัดงาน</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-heading text-h4 mb-4">Support</h4>
+              <ul className="space-y-2">
+                <li><a href="#" className="hover:text-primary transition-colors">ช่วยเหลือ</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">นโยบาย</a></li>
+                <li><a href="#" className="hover:text-primary transition-colors">ติดต่อเรา</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-heading text-h4 mb-4">Contact</h4>
+              <p className="text-neutral-light mb-4">
+                149/31 หมู่ 9 ต.บางโฉลง อ.บางพลี จ.สมุทรปราการ 10540
+              </p>
+              <div className="flex space-x-4">
+                <a href="#" className="hover:text-primary transition-colors">
+                  <Facebook className="w-6 h-6" />
+                </a>
+                <a href="#" className="hover:text-primary transition-colors">
+                  <Instagram className="w-6 h-6" />
+                </a>
+                <a href="#" className="hover:text-primary transition-colors">
+                  <Twitter className="w-6 h-6" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="border-t border-neutral-mid pt-8 text-center text-neutral-light">
+            <p>&copy; 2024 Sunday Rock. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </main>
+  )
+}
