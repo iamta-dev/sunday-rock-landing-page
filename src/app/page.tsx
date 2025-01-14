@@ -1,15 +1,65 @@
 'use client'
 
 import { useState } from 'react'
+import { Menu } from 'lucide-react'
 import Image from 'next/image'
 import { Clock, Shield, Bell, Facebook, Instagram, Twitter } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   return (
     <main className="min-h-screen">
+      {/* Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-neutral-dark/95 backdrop-blur-sm">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-20">
+            <div className="flex items-center space-x-12">
+              {/* Logo */}
+              <Image
+                src="/logo.png"
+                alt="Sunday Rock"
+                width={180/2}
+                height={60/2}
+                className="m-2"
+              />
+              {/* Desktop Menu */}
+              <div className="hidden md:flex items-center space-x-8">
+                <a href="#" className="text-white hover:text-primary transition-colors">หน้าแรก</a>
+                <a href="#" className="text-white hover:text-primary transition-colors">ค้นหาคอนเสิร์ต</a>
+                <a href="#" className="text-white hover:text-primary transition-colors">วิธีการจอง</a>
+                <a href="#" className="text-white hover:text-primary transition-colors">ติดต่อเรา</a>
+              </div>
+            </div>
+            {/* Placeholder for future additions */}
+            <div className="hidden md:flex items-center space-x-4">
+            </div>
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <button className="text-white p-2" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                <svg className="w-6 h-6" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
+                  <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          {/* Mobile Menu */}
+          {isMenuOpen && (
+            <div className="md:hidden">
+              <div className="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" className="block text-white hover:text-primary transition-colors py-2">หน้าแรก</a>
+                <a href="#" className="block text-white hover:text-primary transition-colors py-2">ค้นหาคอนเสิร์ต</a>
+                <a href="#" className="block text-white hover:text-primary transition-colors py-2">วิธีการจอง</a>
+                <a href="#" className="block text-white hover:text-primary transition-colors py-2">ติดต่อเรา</a>
+
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-neutral-dark to-neutral-mid py-32">
+      <section className="relative bg-gradient-to-r from-neutral-dark to-neutral-mid py-32 mt-20">
         <div className="absolute inset-0 opacity-10 pattern-music"></div>
         <div className="container mx-auto px-4 grid lg:grid-cols-5 gap-12 items-center">
           <div className="lg:col-span-3 text-white">
@@ -45,13 +95,23 @@ export default function Home() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
             >
-              <Image
-                src="/ticket-3d.png"
-                alt="Concert Ticket"
-                width={600}
-                height={400}
-                className="rounded-lg shadow-lg"
-              />
+              <div className="bg-white/10 p-8 rounded-lg backdrop-blur-sm">
+                <div className="text-3xl font-heading mb-4">ระบบที่ดีที่สุด</div>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <p>ระบบความปลอดภัยระดับสากล</p>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <p>รองรับการชำระเงินทุกรูปแบบ</p>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-primary rounded-full"></div>
+                    <p>ระบบแจ้งเตือนอัตโนมัติ</p>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
